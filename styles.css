@@ -1,0 +1,103 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("images/black-background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1; /* 👈 sends it behind everything */
+}
+
+header {
+    position: fixed;
+    width: 100vw;
+    height: 15vh; /* or however tall you want it */
+    overflow: visible;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    display: block; /* removes unwanted space below image */
+    object-fit: cover; /* optional: stretches nicely */
+}
+
+main {
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 15vh);
+    overflow-y: auto;
+    padding: 2vh 2vw;
+    box-sizing: border-box;
+    z-index: 10;
+}
+/*main {*/
+/*    top: 15vh; !* pushes content below header *!*/
+/*    width: 100%;*/
+/*    max-width: 800px;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    padding: 2vh 2vw;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+
+@font-face {
+    font-family: 'JungleFever';
+    src: url('fonts/JungleFever.woff2') format('woff2'),
+    url('fonts/JungleFever.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.logo-heading {
+    position: fixed;
+    top: 7vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;   /* responsive to screen width */
+    height: auto;
+    z-index: 999;
+}
+
+
+.logo-heading:hover {
+    transform: translate(-50%, -50%) scale(1.05); /* scale up on hover */
+}
+
+.logo-icon {
+    position: fixed;
+    top: 5vh;
+    left: 4vw;
+    height: 25vh;
+    width: auto;
+    z-index: 1000;
+}
+
+.login-button {
+    position: fixed;
+    top: 4vh;
+    right: 2vw;
+    height: 8vh;
+    width: auto;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.login-button:hover {
+    transform: scale(1.05);
+}
+
+

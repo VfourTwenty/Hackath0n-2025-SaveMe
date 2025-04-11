@@ -1,0 +1,55 @@
+.choice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 5vh 2vw;
+    text-align: center;
+}
+
+.role-options {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.role-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.role-card:hover {
+    transform: scale(1.05);
+}
+
+.role-card img {
+    width: 150px;      /* ⬅️ make the logo bigger */
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+
+.role-card button {
+    background-color: #c4006f;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.role-card button:hover {
+    background-color: #e00083;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="400px" height="100px" viewBox="0 0 400 100" version="1.0"
+     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect x="0" y="0" width="400" height="100" rx="20" ry="20" fill="#000000"/>
+  <style>
+    @font-face {
+      font-family: 'Iceland';
+      src: url('./fonts/Iceland-Regular.ttf') format('truetype');
+    }
+    text {
+      font-family: 'Iceland', sans-serif;
+      font-size: 40px;
+      fill: #ffffff;
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+  </style>
+  <text x="50%" y="50%">login/register</text>
+</svg>
+
