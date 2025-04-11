@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<section class="auth-container">
+    <h2>Shelter Login</h2>
+    <form id="shelter-login-form">
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
 
-</body>
-</html>
+        <p class="switch-auth">
+            Don't have an account yet?
+            <a href="#" onclick="loadPage('shelter-register.html'); return false;">Register</a>
+        </p>
+    </form>
+    <button onclick="shelter_login()">Login</button>
+</section>

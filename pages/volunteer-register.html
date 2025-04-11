@@ -1,16 +1,15 @@
 <section class="auth-container">
     <h2>Volunteer Registration</h2>
     <form id="volunteer-register-form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <input type="password" placeholder="Confirm Password" required>
-
-        <button type="submit">Register</button>
+        <input id="name" type="text" placeholder="Name" required>
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <input id="confirm" type="password" placeholder="Confirm Password" required>
 
         <p class="switch-auth">
             Already have an account?
             <a href="#" onclick="loadPage('volunteer-login.html'); return false;">Login</a>
         </p>
     </form>
+    <button onclick="volunteer_register()">Register</button>
 </section>

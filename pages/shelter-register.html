@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<section class="auth-container">
+    <h2>Volunteer Registration</h2>
+    <form id="shelter-register-form">
+        <input id="name" type="text" placeholder="Name" required>
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="type" type="text" placeholder="Facility type" required>
+        <input id="contact" type="text" placeholder="Contact information" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <input id="confirm" type="password" placeholder="Confirm Password" required>
 
-</body>
-</html>
+        <p class="switch-auth">
+            Already have an account?
+            <a href="#" onclick="loadPage('shelter-login.html'); return false;">Login</a>
+        </p>
+    </form>
+    <button onclick="shelter_register()">Register</button>
+</section>
