@@ -41,15 +41,6 @@ main {
     box-sizing: border-box;
     z-index: 10;
 }
-/*main {*/
-/*    top: 15vh; !* pushes content below header *!*/
-/*    width: 100%;*/
-/*    max-width: 800px;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    padding: 2vh 2vw;*/
-/*    box-sizing: border-box;*/
-/*}*/
 
 
 @font-face {
@@ -101,3 +92,38 @@ main {
 }
 
 
+.view-requests-section {
+    text-align: center;
+    margin: 5vh auto;
+    padding: 2rem;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    max-width: 800px;
+}
+
+.view-requests-section h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.view-requests-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.view-requests-section button {
+    background-color: #c4006f;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.view-requests-section button:hover {
+    background-color: #e00083;
+}

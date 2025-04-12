@@ -226,6 +226,8 @@ function populateVolunteerDashboard() {
     if (user.photoUrl) {
         document.querySelector(".profile-photo img").src = user.photoUrl;
     }
+
+    renderVolunteerFavorites();
 }
 
 
@@ -335,5 +337,22 @@ function getCurrentUser() {
     const storageKey = role === "volunteer" ? "volunteers" : "shelters";
     const allUsers = JSON.parse(localStorage.getItem(storageKey) || "{}");
 
-    return allUsers[email] || null;
+    const user = allUsers[email];
+    if (!user) return null;
+
+    return { ...user, role }; // 👈 Add role to the returned object
+}
+
+
+function isUserLoggedIn() {
+    return !!getCurrentUser(); // returns true if user object exists, false otherwise
+}
+
+function handleViewRequests() {
+    const isLoggedIn = getCurrentUser(); // or any login check
+    if (!isLoggedIn) {
+        loadPage("pages/select-role.html");
+    } else {
+        loadPage("all-announcements.html", false, renderAllAnnouncements);
+    }
 }

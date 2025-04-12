@@ -182,3 +182,139 @@ function renderShelterAnnouncements() {
     });
 
 }
+
+
+function renderVolunteerFavorites() {
+    const user = getCurrentUser();
+    if (!user || !user.favorites || user.favorites.length === 0) {
+        document.getElementById("favorite-animals").innerHTML = "<p style='color:white;'>You haven’t saved any animals yet.</p>";
+        return;
+    }
+
+    const container = document.getElementById("favorite-animals");
+    container.innerHTML = "";
+
+    const allAnimals = JSON.parse(localStorage.getItem("animals") || "{}");
+    const allShelters = JSON.parse(localStorage.getItem("shelters") || "{}");
+
+    user.favorites.forEach(id => {
+        const animal = allAnimals[id];
+        if (!animal) return;
+
+        const shelter = allShelters[animal.creatorId];
+
+        const card = document.createElement("div");
+        card.className = "announcement-card";
+
+        card.innerHTML = `
+            <img class="announcement-photo" src="${animal.photoUrl}" alt="${animal.name}">
+            <div class="announcement-info">
+                <h3 class="announcement-name">${animal.name}</h3>
+                <p class="announcement-species">${animal.species}</p>
+                <p class="announcement-age">${animal.age}</p>
+                <p class="announcement-health">${animal.health}</p>
+                <p class="announcement-location">${animal.location || 'Unknown location'}</p>
+                <p class="announcement-description">${animal.description}</p>
+                <hr style="margin: 1rem 0;">
+                <p class="shelter-info">
+                    <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
+                    <strong>Contact:</strong> ${shelter?.contact || "N/A"}
+                </p>
+                <button class="favorite-btn" onclick="toggleFavorite('${id}'); renderVolunteerFavorites();">
+                    ★ Remove from Favorites
+                </button>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+
+
+function renderAllAnnouncements() {
+    const container = document.getElementById("all-announcements");
+    container.innerHTML = "";
+
+    const allAnimals = JSON.parse(localStorage.getItem("animals") || "{}");
+    const allShelters = JSON.parse(localStorage.getItem("shelters") || "{}");
+
+    const animalIds = Object.keys(allAnimals);
+    if (animalIds.length === 0) {
+        container.innerHTML = "<p style='color:white;'>No animals available at the moment.</p>";
+        return;
+    }
+
+    const user = getCurrentUser();
+    const isVolunteer = user?.role === "volunteer";
+    const favorites = isVolunteer ? user.favorites || [] : [];
+
+    animalIds.forEach(id => {
+        const animal = allAnimals[id];
+        const shelter = allShelters[animal.creatorId];
+        const isFavorited = isVolunteer && favorites.includes(id);
+
+        const card = document.createElement("div");
+        card.className = "announcement-card";
+
+        card.innerHTML = `
+            <img class="announcement-photo" src="${animal.photoUrl}" alt="${animal.name}">
+            <div class="announcement-info">
+                <h3 class="announcement-name">${animal.name}</h3>
+                <p class="announcement-species">${animal.species}</p>
+                <p class="announcement-age">${animal.age}</p>
+                <p class="announcement-health">${animal.health}</p>
+                <p class="announcement-location">${animal.location || 'Unknown location'}</p>
+                <p class="announcement-description">${animal.description}</p>
+                <hr style="margin: 1rem 0;">
+                <p class="shelter-info">
+                    <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
+                    <strong>Contact:</strong> ${shelter?.contact || "N/A"}
+                </p>
+                ${
+            isVolunteer
+                ? `<button class="favorite-btn" onclick="toggleFavorite('${id}')">
+                            ${isFavorited ? '★ Saved' : '☆ Add to Favorites'}
+                           </button>`
+                : ""
+        }
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function toggleFavorite(animalId) {
+    const user = getCurrentUser();
+    if (!user || user.role !== "volunteer") return;
+
+    const volunteers = JSON.parse(localStorage.getItem("volunteers") || "{}");
+    const email = user.email;
+
+    if (!volunteers[email].favorites) {
+        volunteers[email].favorites = [];
+    }
+
+    const index = volunteers[email].favorites.indexOf(animalId);
+    if (index === -1) {
+        volunteers[email].favorites.push(animalId);
+    } else {
+        volunteers[email].favorites.splice(index, 1);
+    }
+
+    localStorage.setItem("volunteers", JSON.stringify(volunteers));
+
+    // Only re-render if the all-announcements container exists
+    const allPage = document.getElementById("all-announcements");
+    if (allPage) {
+        renderAllAnnouncements();
+    }
+
+    // Also re-render favorites if on the volunteer dashboard
+    else
+    {
+        renderVolunteerFavorites();
+    }
+}
+

@@ -103,8 +103,9 @@
 
 .announcement-card {
     background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid #c4006f; /* 🌸 Pink outline */
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 280px;
     padding: 1rem;
     color: white;
@@ -113,6 +114,7 @@
     align-items: center;
     transition: transform 0.2s ease;
 }
+
 
 .announcement-card:hover {
     transform: scale(1.03);
@@ -136,4 +138,42 @@
     font-size: 0.95rem;
     color: #dddddd;
     text-align: center;
+}
+
+
+.all-announcements {
+    max-width: 1200px;
+    margin: 5vh auto;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+
+.all-announcements h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+#all-announcements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+
+.favorite-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background-color: #c4006f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.favorite-btn:hover {
+    background-color: #e00083;
 }

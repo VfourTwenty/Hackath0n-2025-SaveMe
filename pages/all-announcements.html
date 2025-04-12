@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav class="navigation-bar">
+    <input type="text" placeholder="Search..." class="nav-search" oninput="search(this.value)">
+    <img src="images/filter.svg" class="filter-icon" alt="Filter" onclick="toggleFilterPanel()">
+</nav>
 
-</body>
-</html>
+<section class="all-announcements">
+    <h2>All Animals Available for Adoption</h2>
+    <div id="all-announcements" class="announcement-list">
+        <!-- JS will inject .announcement-card elements here -->
+    </div>
+</section>
