@@ -1,0 +1,65 @@
+.homepage-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4vh 2vw;
+    color: white;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.homepage-banner p {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.phrase-left,
+.phrase-right {
+    flex: 1 1 200px;
+}
+
+.center-image img {
+    width: min(250px, 30vw);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .homepage-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .center-image img {
+        width: 60vw; /* slightly bigger on mobile */
+    }
+}
+
+
+.about-section {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05); /* slightly lighter on black bg */
+    color: white;
+    padding: 4vh 8vw;
+    box-sizing: border-box;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #ffffff;
+}

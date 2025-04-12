@@ -32,7 +32,7 @@ header img {
 
 main {
     position: absolute;
-    top: 15vh;
+    top: 20vh;
     left: 0;
     width: 100vw;
     height: calc(100vh - 15vh);

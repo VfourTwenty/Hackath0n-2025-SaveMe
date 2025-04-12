@@ -1,0 +1,76 @@
+.volunteer-dashboard,
+.shelter-dashboard {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4vh 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    color: white;
+    box-sizing: border-box;
+}
+
+
+
+.profile-info {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-photo img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #c4006f;
+}
+
+.profile-photo button {
+    background-color: #c4006f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.profile-details h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-details p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+
+.logout-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.logout-section button {
+    background-color: #c4006f;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.logout-section button:hover {
+    background-color: #e00083;
+}

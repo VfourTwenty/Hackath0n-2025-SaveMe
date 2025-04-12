@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<section class="shelter-dashboard">
+    <div class="profile-info">
+        <div id="profile-photo" class="profile-photo">
+            <img src="../images/profile-placeholder.png" alt="Profile Photo">
+            <button onclick="uploadPhoto()">Upload Photo</button>
+        </div>
 
-</body>
-</html>
+        <div class="profile-details">
+            <h2 id="shelter-name">Shelter Name</h2>
+            <p id="shelter-email">email@example.com</p>
+            <p id="shelter-type">Type of Facility</p>
+            <p id="shelter-contact">Contact Information</p>
+        </div>
+    </div>
+
+    <button class="show-form-button" onclick="toggleAnnouncementForm()">Create Announcement</button>
+
+    <section class="announcement-form hidden" id="announcement-form-section">
+        <h2>Create New Announcement</h2>
+        <form id="announcement-form">
+            <input type="text" id="animal-name" placeholder="Animal Name" required>
+
+            <select id="animal-species" required>
+                <option value="" disabled selected>Select Animal Species</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Raccoon">Raccoon</option>
+                <option value="Rodent">Rodent</option>
+                <option value="Bird">Bird</option>
+                <option value="Fish">Fish</option>
+                <option value="Livestock">Livestock (cow, goat, sheep)</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <p id="species-note" class="species-note hidden">
+                Please provide more details in the description to help with search and identification.
+            </p>
+
+            <input type="text" id="animal-age" placeholder="Age" required>
+
+            <select id="animal-health" required>
+                <option value="" disabled selected>Select Health Status</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Mild health issues">Mild health issues</option>
+                <option value="Serious health issues">Serious health issues</option>
+            </select>
+
+            <textarea id="animal-description" placeholder="Description" required></textarea>
+
+            <input type="text" id="animal-location" placeholder="Location (e.g. Kyiv, Ukraine)" required>
+
+            <input type="file" id="animal-photo" accept="image/*" required>
+        </form>
+        <button class="announcement-create-button" onclick="createAnnouncement()">Post Announcement</button>
+    </section>
+
+    <section class="announcement-form hidden" id="edit-form-section">
+        <h2>Edit Announcement</h2>
+        <form id="edit-announcement-form">
+            <input type="text" id="edit-animal-name" placeholder="Animal Name" required>
+
+            <select id="edit-animal-species" required>
+                <option value="" disabled selected>Select Animal Species</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Raccoon">Raccoon</option>
+                <option value="Rodent">Rodent</option>
+                <option value="Bird">Bird</option>
+                <option value="Fish">Fish</option>
+                <option value="Livestock">Livestock (cow, goat, sheep)</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="text" id="edit-animal-age" placeholder="Age" required>
+
+            <select id="edit-animal-health" required>
+                <option value="" disabled selected>Select Health Status</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Mild health issues">Mild health issues</option>
+                <option value="Serious health issues">Serious health issues</option>
+            </select>
+
+            <input type="text" id="edit-animal-location" placeholder="Location (e.g. Kyiv, Ukraine)" required>
+
+            <textarea id="edit-animal-description" placeholder="Description" required></textarea>
+        </form>
+        <button class="announcement-create-button" onclick="updateAnnouncement()">Save Changes</button>
+    </section>
+
+
+    <div class="dashboard-sections">
+        <h3>Your Announcements</h3>
+        <div id="shelter-announcements" class="announcement-list"></div>
+    </div>
+
+    <div class="logout-section">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</section>

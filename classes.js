@@ -78,3 +78,4 @@ class Shelter {
         return this.animals.map(animal => animal.getSummary()).join('\n');
     }
 }
+
