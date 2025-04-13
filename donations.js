@@ -46,6 +46,19 @@ function getWalletFromAnimalId(animalId)
     return shelters[creator].ethWallet;
 }
 
+function getShelterEmailFromAnimalId(animalId)
+{
+    const animals = JSON.parse(localStorage.getItem("animals") || "{}");
+
+    const animal = animals[animalId];
+    if (!animal) {
+        alert("Animal not found.");
+        return;
+    }
+
+    return animal.creatorId;
+}
+
 async function handleDonation(animalId)
 {
     const animals = JSON.parse(localStorage.getItem("animals") || "{}");

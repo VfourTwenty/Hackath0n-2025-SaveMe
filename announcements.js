@@ -300,8 +300,11 @@ function renderAllAnnouncements(filteredIds = null) {
                 <p class="announcement-location">${animal.location || 'Unknown location'}</p>
                 <p class="announcement-description">${animal.description}</p>
                 <hr style="margin: 1rem 0;">
-                <p class="shelter-info">
-                    <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
+                 <p class="shelter-info">
+                    <strong>Shelter:</strong>
+                        <span class="shelter-link" onclick="viewShelterProfile('${shelter?.email}')">
+                             ${shelter?.name || "Unknown"}
+                        </span><br>
                     <strong>Contact:</strong> ${shelter?.contact || "N/A"}
                 </p>
                 ${isVolunteer
@@ -345,12 +348,22 @@ function toggleFavorite(animalId) {
     localStorage.setItem("volunteers", JSON.stringify(volunteers));
 
     // Only re-render if the all-announcements container exists
-    const allPage = document.getElementById("all-announcements");
-    if (allPage) {
-        const filteredIds = JSON.parse(sessionStorage.getItem("filteredAnimalIds") || "[]");
-        renderAllAnnouncements(filteredIds.length ? filteredIds : undefined);
-    } else {
-        renderVolunteerFavorites();
+    try
+    {
+        const allPage = document.getElementById("all-announcements");
+        if (allPage) {
+            const filteredIds = JSON.parse(sessionStorage.getItem("filteredAnimalIds") || "[]");
+            renderAllAnnouncements(filteredIds.length ? filteredIds : undefined);
+        } else {
+            renderVolunteerFavorites();
+        }
+    }
+    catch (err) {
+        const shelterPage = document.getElementById("public-shelter-animals");
+        if (shelterPage) {
+            renderPublicShelterProfile(getShelterEmailFromAnimalId(animalId));
+            console.log("shelterPage");
+        }
     }
 }
 
