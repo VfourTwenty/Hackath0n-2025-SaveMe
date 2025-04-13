@@ -1,3 +1,11 @@
+.search-wrapper {
+    position: relative;
+    width: 30vw;
+    left: -4vw;
+    max-width: 400px;
+}
+
+
 .navigation-bar {
     position: fixed;
     top: 15vh; /* Exactly below the header */
@@ -11,26 +19,91 @@
     z-index: 998; /* below logo and buttons */
 }
 
+
 .nav-search {
-    padding: 0.8rem 1rem;
+    padding: 0.8rem 2.5rem 0.8rem 1rem; /* extra space for icon */
     font-size: 1rem;
     border-radius: 10px;
     border: none;
-    width: 30vw;
-    max-width: 400px;
+    width: 100%;
     background-color: #3d3d3d;
     color: #000;
     outline: none;
+    box-sizing: border-box;
 }
 
+
 .filter-icon {
-    width: 24px;
-    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     opacity: 0.8;
     transition: opacity 0.2s ease;
 }
 
+
 .filter-icon:hover {
     opacity: 1;
 }
+
+
+.hidden {
+    display: none;
+}
+
+.filter-panel {
+    position: absolute;
+    top: calc(15vh + 4vh + 1rem); /* Below header + nav */
+    right: 2vw;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    color: white;
+    z-index: 997;
+    /*backdrop-filter: blur(8px);*/
+    background-color: black;
+    border: 1px solid #c4006f;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
+    min-width: 240px;
+}
+
+.filter-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.filter-panel label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.filter-panel select {
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.95rem;
+}
+
+
+.species-filter,
+.health-filter {
+    display: block;
+    color: #ffffff;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #c4006f;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    margin: 0.4rem 0;
+    transition: background-color 0.2s ease;
+}
+

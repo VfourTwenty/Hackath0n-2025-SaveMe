@@ -3,7 +3,7 @@ let volunteers = [];
 let shelters = [];
 
 
-function loadPage(page, skipPush = false, callback = null) {
+function loadPage(page, skipPush = false, ...callbacks) {
     let fullUrl = page;
 
     if (!fullUrl.startsWith("pages/")) {
@@ -23,13 +23,14 @@ function loadPage(page, skipPush = false, callback = null) {
                 history.pushState({ page }, "", `#${page}`);
             }
 
-            if (typeof callback === "function") {
-                callback(); // run after page is injected
-            }
-
+            // Run all provided callbacks in order
+            callbacks.forEach(cb => {
+                if (typeof cb === "function") cb();
+            });
         })
         .catch(err => console.error(`Failed to load ${fullUrl}:`, err));
 }
+
 
 
 function loadHomePage() {
@@ -353,6 +354,13 @@ function handleViewRequests() {
     if (!isLoggedIn) {
         loadPage("pages/select-role.html");
     } else {
-        loadPage("all-announcements.html", false, renderAllAnnouncements);
+        loadPage(
+            "all-announcements.html",
+            false,
+            setupSpeciesFilterCheckboxes,
+            setupHealthFilterCheckboxes,
+            renderAllAnnouncements
+        );
+
     }
 }

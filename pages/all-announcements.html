@@ -1,7 +1,40 @@
 <nav class="navigation-bar">
-    <input type="text" placeholder="Search..." class="nav-search" oninput="search(this.value)">
-    <img src="images/filter.svg" class="filter-icon" alt="Filter" onclick="toggleFilterPanel()">
+    <div class="search-wrapper">
+        <input type="text" placeholder="Search..." class="nav-search" oninput="search(this.value)">
+        <img src="../images/filter.svg" class="filter-icon" alt="Filter" onclick="toggleFilterPanel()">
+    </div>
 </nav>
+
+<div id="filter-panel" class="filter-panel hidden">
+    <h3>Filter by</h3>
+    <!-- Example filters -->
+    <label>
+        Species:
+        <div class="species-filter">
+            <label><input type="checkbox" name="species" value="All" id="species-all"> All</label>
+            <label><input type="checkbox" name="species" value="Dog"> Dog</label>
+            <label><input type="checkbox" name="species" value="Cat"> Cat</label>
+            <label><input type="checkbox" name="species" value="Raccoon"> Raccoon</label>
+            <label><input type="checkbox" name="species" value="Rodent"> Rodent</label>
+            <label><input type="checkbox" name="species" value="Bird"> Bird</label>
+            <label><input type="checkbox" name="species" value="Fish"> Fish</label>
+            <label><input type="checkbox" name="species" value="Livestock"> Livestock</label>
+            <label><input type="checkbox" name="species" value="Other"> Other</label>
+        </div>
+    </label>
+
+    <label>
+        Health:
+        <div class="health-filter">
+            <label><input type="checkbox" name="health" value="All" id="health-all"> All</label>
+            <label><input type="checkbox" name="health" value="Healthy"> Healthy</label>
+            <label><input type="checkbox" name="health" value="Mild health issues"> Mild health issues</label>
+            <label><input type="checkbox" name="health" value="Serious health issues"> Serious health issues</label>
+        </div>
+    </label>
+
+</div>
+
 
 <section class="all-announcements">
     <h2>All Animals Available for Adoption</h2>

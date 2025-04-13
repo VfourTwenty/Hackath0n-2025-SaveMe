@@ -318,3 +318,28 @@ function toggleFavorite(animalId) {
     }
 }
 
+
+
+
+function toggleFilterPanel() {
+    const panel = document.getElementById("filter-panel");
+    panel.classList.toggle("hidden");
+
+    // Close on outside click
+    if (!panel.classList.contains("hidden")) {
+        setTimeout(() => {
+            document.addEventListener("click", outsideClickListener);
+        }, 0);
+    }
+}
+
+function outsideClickListener(event) {
+    const panel = document.getElementById("filter-panel");
+    const icon = document.querySelector(".filter-icon");
+
+    if (!panel.contains(event.target) && !icon.contains(event.target)) {
+        panel.classList.add("hidden");
+        document.removeEventListener("click", outsideClickListener);
+    }
+}
+
