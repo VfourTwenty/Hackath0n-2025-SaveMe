@@ -231,17 +231,17 @@ function renderVolunteerFavorites() {
 }
 
 
-
-function renderAllAnnouncements() {
+function renderAllAnnouncements(filteredIds = null) {
     const container = document.getElementById("all-announcements");
     container.innerHTML = "";
 
     const allAnimals = JSON.parse(localStorage.getItem("animals") || "{}");
     const allShelters = JSON.parse(localStorage.getItem("shelters") || "{}");
 
-    const animalIds = Object.keys(allAnimals);
-    if (animalIds.length === 0) {
-        container.innerHTML = "<p style='color:white;'>No animals available at the moment.</p>";
+    const idsToRender = filteredIds || Object.keys(allAnimals);
+
+    if (idsToRender.length === 0) {
+        container.innerHTML = "<p style='color:white;'>No animals match your filters.</p>";
         return;
     }
 
@@ -249,8 +249,10 @@ function renderAllAnnouncements() {
     const isVolunteer = user?.role === "volunteer";
     const favorites = isVolunteer ? user.favorites || [] : [];
 
-    animalIds.forEach(id => {
+    idsToRender.forEach(id => {
         const animal = allAnimals[id];
+        if (!animal) return;
+
         const shelter = allShelters[animal.creatorId];
         const isFavorited = isVolunteer && favorites.includes(id);
 
@@ -274,16 +276,16 @@ function renderAllAnnouncements() {
                 ${
             isVolunteer
                 ? `<button class="favorite-btn" onclick="toggleFavorite('${id}')">
-                            ${isFavorited ? '★ Saved' : '☆ Add to Favorites'}
-                           </button>`
+                        ${isFavorited ? '★ Saved' : '☆ Add to Favorites'}
+                   </button>`
                 : ""
         }
             </div>
         `;
-
         container.appendChild(card);
     });
 }
+
 
 function toggleFavorite(animalId) {
     const user = getCurrentUser();
@@ -308,12 +310,9 @@ function toggleFavorite(animalId) {
     // Only re-render if the all-announcements container exists
     const allPage = document.getElementById("all-announcements");
     if (allPage) {
-        renderAllAnnouncements();
-    }
-
-    // Also re-render favorites if on the volunteer dashboard
-    else
-    {
+        const filteredIds = JSON.parse(sessionStorage.getItem("filteredAnimalIds") || "[]");
+        renderAllAnnouncements(filteredIds.length ? filteredIds : undefined);
+    } else {
         renderVolunteerFavorites();
     }
 }

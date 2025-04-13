@@ -107,3 +107,19 @@
     transition: background-color 0.2s ease;
 }
 
+.apply-filters-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #c4006f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.apply-filters-btn:hover {
+    background-color: #e00083;
+}
