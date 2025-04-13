@@ -63,7 +63,7 @@ SaveMe is a platform designed to help animal shelters and individuals collaborat
 
 ## Future development ideas
 
-🔐 Authentication & Backend
+🔐 Authentication, Backend & Architecture 
 
     Implement secure login and registration with backend verification and password hashing
 
@@ -72,6 +72,8 @@ SaveMe is a platform designed to help animal shelters and individuals collaborat
     Migrate to a real-time database 
 
     Add administrator role or automated censorship control
+
+    Clean up the file structure and configure hosting
 
 💸 Crypto Donation Enhancements
 
