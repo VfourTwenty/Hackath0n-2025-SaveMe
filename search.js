@@ -61,11 +61,11 @@ function setupHealthFilterCheckboxes() {
 }
 
 
-function applyFiltersAndSearch() {
+function applyFiltersAndSearch(query = null) {
     const allAnimals = JSON.parse(localStorage.getItem("animals") || "{}");
     const ids = Object.keys(allAnimals);
 
-    const searchQuery = document.getElementById("global-search")?.value?.toLowerCase() || "";
+    const searchQuery = (query ?? document.getElementById("global-search")?.value)?.toLowerCase() || "";
 
     const selectedSpecies = [...document.querySelectorAll('input[name="species"]:checked')]
         .map(cb => cb.value)
@@ -90,8 +90,7 @@ function applyFiltersAndSearch() {
         return matchText && matchSpecies && matchHealth;
     });
 
-    // for toggle favourites
     sessionStorage.setItem("filteredAnimalIds", JSON.stringify(filtered));
-
     renderAllAnnouncements(filtered);
 }
+
