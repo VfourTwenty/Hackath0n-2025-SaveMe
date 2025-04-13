@@ -114,5 +114,5 @@ SaveMe is a platform designed to help animal shelters and individuals collaborat
     Dashboard stats for shelters (views, ratings, discussions, adoption rates)
 
 
-### This project was developed from April 9th to 13th as an entry task for Best::Hackath0n2025.
+### This project was developed from April 10th to 13th as an entry task for Best::Hackath0n2025.
 
