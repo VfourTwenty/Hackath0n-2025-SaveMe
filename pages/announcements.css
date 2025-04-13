@@ -305,3 +305,35 @@
 .favorite-btn:hover {
     background-color: #e00083;
 }
+
+
+.volunteer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+
+.donate-btn {
+    width: 36px;
+    height: 36px;
+    background-color: #9333ea;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.donate-btn img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+.donate-btn:hover {
+    transform: scale(1.15);
+}

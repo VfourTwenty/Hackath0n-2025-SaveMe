@@ -161,6 +161,7 @@ function formatAge(months) {
     return parts ? `${parts} old` : "0 months old";
 }
 
+
 function renderShelterAnnouncements() {
     console.log("rendering shelter");
     const user = getCurrentUser();
@@ -243,9 +244,15 @@ function renderVolunteerFavorites() {
                     <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
                     <strong>Contact:</strong> ${shelter?.contact || "N/A"}
                 </p>
-                <button class="favorite-btn" onclick="toggleFavorite('${id}'); renderVolunteerFavorites();">
-                    ★ Remove from Favorites
-                </button>
+                <div class="volunteer-buttons">
+                    <button class="favorite-btn" onclick="toggleFavorite('${id}'); renderVolunteerFavorites();">
+                        ★ Remove from Favorites
+                    </button>
+                    <div class="donate-btn" onclick="toggleDonationModal('${id}')"
+                         title="Support me!">
+                         <img src="../images/eth-icon.svg" alt="Donate">
+                    </div>
+                </div>
             </div>
         `;
 
@@ -297,13 +304,19 @@ function renderAllAnnouncements(filteredIds = null) {
                     <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
                     <strong>Contact:</strong> ${shelter?.contact || "N/A"}
                 </p>
-                ${
-            isVolunteer
-                ? `<button class="favorite-btn" onclick="toggleFavorite('${id}')">
-                        ${isFavorited ? '★ Saved' : '☆ Add to Favorites'}
-                   </button>`
-                : ""
-        }
+                ${isVolunteer
+                            ? `
+                        <div class="volunteer-buttons">
+                            <button class="favorite-btn" onclick="toggleFavorite('${id}')">
+                                ${isFavorited ? '★ Saved' : '☆ Add to Favorites'}
+                            </button>
+                            <div class="donate-btn" onclick="toggleDonationModal('${id}')"
+                                 title="Support me!">
+                                <img src="../images/eth-icon.svg" alt="Donate">
+                            </div>
+                        </div>`
+                            : ""
+                        }
             </div>
         `;
         container.appendChild(card);

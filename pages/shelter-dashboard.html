@@ -10,7 +10,23 @@
             <p id="shelter-email">email@example.com</p>
             <p id="shelter-type">Type of Facility</p>
             <p id="shelter-contact">Contact Information</p>
+            <button class="payment-info-button" onclick="toggleEditPaymentInfo()">Edit Payment Info</button>
+            <div class="donation-info" id="shelter-donation-info">
+                <p><strong>ETH Wallet:</strong> <span id="shelter-wallet">Add a wallet address</span></p>
+                <p><strong>Other Methods:</strong> <span id="shelter-other-payment">Add a payment method</span></p>
+            </div>
+
         </div>
+
+        <section class="edit-profile-form hidden" id="edit-profile-form-section">
+            <h3>Specify the payment info to receive donations.</h3>
+            <form id="edit-profile-form">
+                <input type="text" id="edit-eth-wallet" placeholder="Ethereum Wallet Address">
+                <input type="text" id="edit-payment-info" placeholder="Other Donation Methods">
+            </form>
+            <button onclick="savePaymentInfo()">Save Changes</button>
+        </section>
+
     </div>
 
     <button class="show-form-button" onclick="toggleAnnouncementForm()">Create Announcement</button>

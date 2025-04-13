@@ -6,7 +6,9 @@
 </head>
 <script src="main.js"></script>
 <script src="search.js"></script>
+<script src="profile.js"></script>
 <script src="requests.js"></script>
+<script src="donations.js"></script>
 <script src="announcements.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages/navbar.css">
@@ -16,6 +18,22 @@
 <link rel="stylesheet" href="pages/select-role.css">
 <link rel="stylesheet" href="pages/auth.css">
 <link rel="stylesheet" href="pages/dashboards.css">
+<link rel="stylesheet" href="pages/donations.css">
+
+<div id="donation-modal" class="donation-modal hidden">
+    <div class="donation-content">
+        <h2>Support <span id="donation-animal-name">an animal</span></h2>
+        <p>send Eth to <span id="donation-animal-wallet"></span> </p>
+<!--        <h2>Support <span id="donation-animal-name">an animal</span></h2>-->
+        <input type="number" id="donation-amount" min="0.0001" step="0.001" placeholder="Enter ETH amount">
+        <div class="donation-buttons">
+            <button onclick="submitDonation()">Send</button>
+            <button onclick="toggleDonationModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
 <body>
 
 <div class="background-layer"></div>
@@ -24,11 +42,8 @@
     <img src="images/header.svg" alt="Header background">
     <img src="images/logo-icon.svg" class="logo-icon" alt="Logo icon">
     <img src="images/saveme-label.svg" class="logo-heading" alt="SaveMe logo" onclick="loadHomePage()">
-    <img src="images/login-register-button.svg" class="login-button" alt="Login/Register" onclick="loadPage('pages/select-role.html')">
+    <img src="images/login.svg" class="login-button" alt="Login/Register" onclick="loadPage('pages/select-role.html')">
 </header>
-
-
-
 
 <main id="main-content">
     <!-- This part will be replaced dynamically -->

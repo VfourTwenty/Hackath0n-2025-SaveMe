@@ -249,6 +249,9 @@ function populateShelterDashboard() {
     document.getElementById("shelter-email").textContent = user.email;
     document.getElementById("shelter-type").textContent = `Facility: ${user.type}`;
     document.getElementById("shelter-contact").textContent = `Contact: ${user.contact}`;
+    document.getElementById("shelter-wallet").textContent = user.ethWallet || "Add a wallet address";
+    document.getElementById("shelter-other-payment").textContent = user.otherPayment || "Add a payment method";
+
 
     if (user.profilePhoto) {
         console.log("profile photo set");
@@ -307,16 +310,16 @@ function updateHeaderUI() {
     if (!loginBtn) return;
 
     if (userRole === "volunteer") {
-        loginBtn.src = "images/dashboard-button.svg";
+        loginBtn.src = "images/user.svg";
         loginBtn.alt = "Volunteer Dashboard";
         loginBtn.onclick = () => loadPage("volunteer-dashboard.html", false, populateVolunteerDashboard);
     } else if (userRole === "shelter") {
-        loginBtn.src = "images/dashboard-button.svg";
+        loginBtn.src = "images/user.svg";
         loginBtn.alt = "Shelter Dashboard";
         loginBtn.onclick = () => loadPage("shelter-dashboard.html", false, populateShelterDashboard);
     } else {
         // Not logged in
-        loginBtn.src = "images/login-register-button.svg";
+        loginBtn.src = "images/login.svg";
         loginBtn.alt = "Login/Register";
         loginBtn.onclick = () => loadPage("select-role.html");
     }
