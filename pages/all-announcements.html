@@ -1,6 +1,6 @@
 <nav class="navigation-bar">
     <div class="search-wrapper">
-        <input type="text" placeholder="Search..." class="nav-search" oninput="applyFiltersAndSearch(this.value)">
+        <input type="text" placeholder="Search by name, species, location and other tags" class="nav-search" oninput="applyFiltersAndSearch(this.value)">
         <img src="../images/filter.svg" class="filter-icon" alt="Filter" onclick="toggleFilterPanel()">
     </div>
 </nav>
@@ -33,8 +33,26 @@
         </div>
     </label>
 
-    <button class="apply-filters-btn" onclick="applyFiltersAndSearch()">Apply Filters</button>
+    <label>
+        Age:
+        <div class="age-filter-wrapper">
+            <select id="age-comparator">
+                <option value="younger">Younger than</option>
+                <option value="equal">Exactly</option>
+                <option value="older">Older than</option>
+            </select>
+            <div class="age-group">
+                <input type="number" id="filter-age-years" placeholder="Years" min="0">
+                <input type="number" id="filter-age-months" placeholder="Months" min="0" max="11">
+            </div>
+        </div>
+    </label>
 
+
+    <div class="filter-buttons">
+        <button class="apply-filters-btn" onclick="applyFiltersAndSearch()">Apply Filters</button>
+        <button class="clear-filters-btn" onclick="clearFilters()">Clear Filters</button>
+    </div>
 </div>
 
 

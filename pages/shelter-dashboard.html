@@ -36,7 +36,14 @@
                 Please provide more details in the description to help with search and identification.
             </p>
 
-            <input type="text" id="animal-age" placeholder="Age" required>
+            <div class="age-wrapper">
+                <label for="animal-age-years">Animal Age:</label>
+                <div class="age-group">
+                    <input type="number" id="animal-age-years" placeholder="Years" min="0" required>
+                    <input type="number" id="animal-age-months" placeholder="Months" min="0" max="11" required>
+                </div>
+            </div>
+
 
             <select id="animal-health" required>
                 <option value="" disabled selected>Select Health Status</option>
@@ -49,7 +56,11 @@
 
             <input type="text" id="animal-location" placeholder="Location (e.g. Kyiv, Ukraine)" required>
 
-            <input type="file" id="animal-photo" accept="image/*" required>
+            <div class="photo-upload-wrapper">
+                <label for="animal-photo">Upload a Photo:</label>
+                <input type="file" id="animal-photo" accept="image/*" required>
+            </div>
+
         </form>
         <button class="announcement-create-button" onclick="createAnnouncement()">Post Announcement</button>
     </section>
@@ -71,7 +82,13 @@
                 <option value="Other">Other</option>
             </select>
 
-            <input type="text" id="edit-animal-age" placeholder="Age" required>
+            <div class="age-wrapper">
+                <label for="edit-animal-age-years">Animal Age:</label>
+                <div class="age-group">
+                    <input type="number" id="edit-animal-age-years" placeholder="Years" min="0" required>
+                    <input type="number" id="edit-animal-age-months" placeholder="Months" min="0" max="11" required>
+                </div>
+            </div>
 
             <select id="edit-animal-health" required>
                 <option value="" disabled selected>Select Health Status</option>

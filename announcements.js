@@ -5,7 +5,16 @@ function toggleAnnouncementForm() {
 
 function createAnnouncement() {
     const name = document.getElementById("animal-name").value.trim();
-    const age = document.getElementById("animal-age").value.trim();
+    let years = parseInt(document.getElementById("animal-age-years").value) || 0;
+    let months = parseInt(document.getElementById("animal-age-months").value) || 0;
+
+    // Normalize months
+    if (months > 11) {
+        years += Math.floor(months / 12);
+        months = months % 12;
+    }
+
+    const totalMonths = years * 12 + months;
     const species = document.getElementById("animal-species").value;
     const health = document.getElementById("animal-health").value.trim();
     const location = document.getElementById("animal-location").value.trim();
@@ -13,7 +22,7 @@ function createAnnouncement() {
     const photoInput = document.getElementById("animal-photo");
     const photoFile = photoInput.files[0];
 
-    if (!name || !age || !health || !description || !location || !photoFile) {
+    if (!name || !species || totalMonths === 0 || !health || !location || !description || !photoFile) {
         alert("Please fill out all fields.");
         return;
     }
@@ -24,44 +33,39 @@ function createAnnouncement() {
         const id = crypto.randomUUID();
         const shelterEmail = sessionStorage.getItem("userEmail");
 
-        // Animal object
         const animal = {
             id,
             name,
             species,
-            age,
+            age: totalMonths,
             health,
-            description,
             location,
+            description,
             photoUrl,
             creatorId: shelterEmail,
             createdAt: Date.now()
         };
 
-        const currentUser = getCurrentUser();
-        const isOwner = currentUser && currentUser.email === animal.ownerId;
-
-        // Save to global animals
+        // Save to animals
         const animals = JSON.parse(localStorage.getItem("animals") || "{}");
         animals[id] = animal;
         localStorage.setItem("animals", JSON.stringify(animals));
 
-        // Update shelter's animal list
+        // Update shelter animal list
         const shelters = JSON.parse(localStorage.getItem("shelters") || "{}");
         const shelter = shelters[shelterEmail];
-
         if (!shelter.animals) shelter.animals = [];
         shelter.animals.push(id);
-
         localStorage.setItem("shelters", JSON.stringify(shelters));
 
-        alert("Announcement created!");
-        // Optionally: refresh list or close form
+        // Refresh UI
+        renderShelterAnnouncements();
+        document.getElementById("announcement-form-section").classList.add("hidden");
     };
 
     reader.readAsDataURL(photoFile);
-    renderShelterAnnouncements();
 }
+
 
 
 let editingAnimalId = null;
@@ -73,20 +77,24 @@ function editAnnouncement(id) {
 
     editingAnimalId = id;
 
-    // Fill form
+    // Split age in months into years and months
+    const years = Math.floor(animal.age / 12);
+    const months = animal.age % 12;
+
+    // Fill form fields
     document.getElementById("edit-animal-name").value = animal.name;
     document.getElementById("edit-animal-species").value = animal.species || "";
-    document.getElementById("edit-animal-age").value = animal.age;
+    document.getElementById("edit-animal-age-years").value = years;
+    document.getElementById("edit-animal-age-months").value = months;
     document.getElementById("edit-animal-health").value = animal.health;
     document.getElementById("edit-animal-location").value = animal.location || "";
     document.getElementById("edit-animal-description").value = animal.description;
 
-    // Show edit form
+    // Show and scroll to edit form
     document.getElementById("edit-form-section").classList.remove("hidden");
-
-    // Optionally scroll to it
     document.getElementById("edit-form-section").scrollIntoView({ behavior: "smooth" });
 }
+
 
 function updateAnnouncement() {
     if (!editingAnimalId) return;
@@ -95,10 +103,14 @@ function updateAnnouncement() {
     const animal = animals[editingAnimalId];
     if (!animal) return;
 
+    const years = parseInt(document.getElementById("edit-animal-age-years").value) || 0;
+    const months = parseInt(document.getElementById("edit-animal-age-months").value) || 0;
+    const totalMonths = years * 12 + months;
+
     // Update fields
     animal.name = document.getElementById("edit-animal-name").value.trim();
     animal.species = document.getElementById("edit-animal-species").value.trim();
-    animal.age = document.getElementById("edit-animal-age").value.trim();
+    animal.age = totalMonths;
     animal.health = document.getElementById("edit-animal-health").value.trim();
     animal.location = document.getElementById("edit-animal-location").value.trim();
     animal.description = document.getElementById("edit-animal-description").value.trim();
@@ -110,8 +122,8 @@ function updateAnnouncement() {
     // Hide form and refresh
     document.getElementById("edit-form-section").classList.add("hidden");
     renderShelterAnnouncements();
-    alert("Announcement updated!");
 }
+
 
 
 function deleteAnnouncement(id) {
@@ -140,7 +152,17 @@ function deleteAnnouncement(id) {
 }
 
 
+function formatAge(months) {
+    const years = Math.floor(months / 12);
+    const remMonths = months % 12;
+    const yStr = years > 0 ? `${years} year${years > 1 ? "s" : ""}` : "";
+    const mStr = remMonths > 0 ? `${remMonths} month${remMonths > 1 ? "s" : ""}` : "";
+    const parts = [yStr, mStr].filter(Boolean).join(" ");
+    return parts ? `${parts} old` : "0 months old";
+}
+
 function renderShelterAnnouncements() {
+    console.log("rendering shelter");
     const user = getCurrentUser();
     if (!user || !user.animals || user.animals.length === 0) {
         document.getElementById("shelter-announcements").innerHTML = "<p style='color:white;'>No announcements yet.</p>";
@@ -157,7 +179,7 @@ function renderShelterAnnouncements() {
         if (!animal) return;
 
         const isOwner = user.email === animal.creatorId;
-        console.log("the user is owner", isOwner);
+        const ageDisplay = formatAge(animal.age);
 
         const card = document.createElement("div");
         card.className = "announcement-card";
@@ -167,7 +189,7 @@ function renderShelterAnnouncements() {
         <div class="announcement-info">
             <h3 class="announcement-name">${animal.name}</h3>
             <p class="announcement-species">${animal.species}</p> <!-- 👈 Added -->
-            <p class="announcement-age">${animal.age}</p>
+            <p class="announcement-age">${ageDisplay}</p>
             <p class="announcement-health">${animal.health}</p>
              <p class="announcement-location">${animal.location}</p> <!-- 👈 New -->
             <p class="announcement-description">${animal.description}</p>
@@ -202,6 +224,7 @@ function renderVolunteerFavorites() {
         if (!animal) return;
 
         const shelter = allShelters[animal.creatorId];
+        const ageDisplay = formatAge(animal.age);
 
         const card = document.createElement("div");
         card.className = "announcement-card";
@@ -211,7 +234,7 @@ function renderVolunteerFavorites() {
             <div class="announcement-info">
                 <h3 class="announcement-name">${animal.name}</h3>
                 <p class="announcement-species">${animal.species}</p>
-                <p class="announcement-age">${animal.age}</p>
+                <p class="announcement-age">${ageDisplay}</p>
                 <p class="announcement-health">${animal.health}</p>
                 <p class="announcement-location">${animal.location || 'Unknown location'}</p>
                 <p class="announcement-description">${animal.description}</p>
@@ -254,6 +277,7 @@ function renderAllAnnouncements(filteredIds = null) {
         if (!animal) return;
 
         const shelter = allShelters[animal.creatorId];
+        const ageDisplay = formatAge(animal.age);
         const isFavorited = isVolunteer && favorites.includes(id);
 
         const card = document.createElement("div");
@@ -264,7 +288,7 @@ function renderAllAnnouncements(filteredIds = null) {
             <div class="announcement-info">
                 <h3 class="announcement-name">${animal.name}</h3>
                 <p class="announcement-species">${animal.species}</p>
-                <p class="announcement-age">${animal.age}</p>
+                <p class="announcement-age">${ageDisplay}</p>
                 <p class="announcement-health">${animal.health}</p>
                 <p class="announcement-location">${animal.location || 'Unknown location'}</p>
                 <p class="announcement-description">${animal.description}</p>

@@ -6,7 +6,7 @@
     margin: 1rem auto;
     display: block;
     background-color: #c4006f;
-    color: white;
+    color: #3d3d3d;
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 10px;
@@ -27,7 +27,7 @@
     padding: 2.5rem;
     border-radius: 18px;
     background-color: rgba(0, 0, 0, 0.4);
-    color: #ffffff;
+    color: #3d3d3d;
     text-align: center;
 }
 
@@ -44,6 +44,7 @@
 
 .announcement-form input,
 .announcement-form textarea {
+    background-color: #3D3D3DFF;
     padding: 0.9rem;
     font-size: 1rem;
     border: none;
@@ -51,6 +52,133 @@
     outline: none;
     resize: vertical;
 }
+
+.age-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.age-group input {
+    width: 80px;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.age-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #3d3d3d;
+    margin-bottom: 1rem;
+}
+
+.age-line input {
+    width: 80px;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.age-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+    color: #3d3d3d;
+    font-size: 1rem;
+}
+
+.age-wrapper label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.age-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.age-group input {
+    width: 70px;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #2e2e2e;
+    color: #3d3d3d;
+}
+
+.age-filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    color: white;
+}
+
+.age-filter-wrapper select {
+    padding: 0.6rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+}
+
+.age-filter-wrapper .age-group input {
+    width: 70px;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: #2e2e2e;
+    color: white;
+}
+
+
+.photo-upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+    color: #3d3d3d;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.photo-upload-wrapper label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.photo-upload-wrapper input[type="file"] {
+    flex-grow: 1;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: #2a2a2a;
+    border: none;
+    cursor: pointer;
+}
+
+
 
 .announcement-form textarea {
     min-height: 100px;
@@ -79,7 +207,7 @@
     border: none;
     border-radius: 10px;
     outline: none;
-    background-color: #fff;
+    background-color: #3d3d3d;
     color: #333;
     appearance: none;
     -webkit-appearance: none;
