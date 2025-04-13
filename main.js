@@ -267,38 +267,7 @@ function populateShelterDashboard() {
 
 
 function uploadPhoto() {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-
-    input.onchange = function () {
-        const file = input.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const photoUrl = e.target.result;
-            document.getElementById("profile-photo").src = photoUrl;
-
-            // Save to localStorage under user data
-            const email = sessionStorage.getItem("userEmail");
-            const role = sessionStorage.getItem("userRole");
-
-            if (!email || !role) return;
-
-            const storeName = role === "volunteer" ? "volunteers" : "shelters";
-            const users = JSON.parse(localStorage.getItem(storeName) || "{}");
-            if (!users[email]) return;
-
-            users[email].profilePhoto = photoUrl;
-            localStorage.setItem(storeName, JSON.stringify(users));
-        };
-
-        reader.readAsDataURL(file);
-
-    };
-
-    input.click(); // Trigger file picker
+    console.log("profile customization coming soon ;)");
 }
 
 

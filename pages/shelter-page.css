@@ -49,3 +49,16 @@
     gap: 2rem;
     justify-content: center;
 }
+
+
+.shelter-link {
+    color: #ff66a3; /* A bright pink to match your theme */
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.shelter-link:hover {
+    color: #ff85b3; /* Slightly lighter pink on hover */
+}

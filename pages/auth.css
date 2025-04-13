@@ -24,6 +24,7 @@
     border: none;
     border-radius: 10px;
     outline: none;
+    background-color: #323232;
 }
 
 .auth-container button {

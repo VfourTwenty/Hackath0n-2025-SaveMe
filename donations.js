@@ -72,7 +72,6 @@ async function handleDonation(animalId)
 
     const shelterWallet = getWalletFromAnimalId(animalId);
     console.log("shelter wallet:", shelterWallet);
-    const animalName = animal.name;
 
     if (!window.ethereum) {
         alert("MetaMask not found. Please install it.");
@@ -108,7 +107,7 @@ async function handleDonation(animalId)
         });
 
         console.log("Transaction hash:", txHash);
-        alert("Thank you for your donation!");
+        alert(`Thank you for your donation!\nYour transaction to ${animal.name} hash:\n${txHash}`);
     } catch (err) {
         console.error("Donation failed:", err);
         alert("Transaction was cancelled or failed.");

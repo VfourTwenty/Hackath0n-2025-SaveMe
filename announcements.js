@@ -240,8 +240,11 @@ function renderVolunteerFavorites() {
                 <p class="announcement-location">${animal.location || 'Unknown location'}</p>
                 <p class="announcement-description">${animal.description}</p>
                 <hr style="margin: 1rem 0;">
-                <p class="shelter-info">
-                    <strong>Shelter:</strong> ${shelter?.name || "Unknown"}<br>
+                   <p class="shelter-info">
+                    <strong>Shelter:</strong>
+                        <span class="shelter-link" onclick="viewShelterProfile('${shelter?.email}')">
+                             ${shelter?.name || "Unknown"}
+                        </span><br>
                     <strong>Contact:</strong> ${shelter?.contact || "N/A"}
                 </p>
                 <div class="volunteer-buttons">
