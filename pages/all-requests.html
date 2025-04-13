@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav class="navigation-bar">
+    <div class="search-wrapper">
+        <input type="text" placeholder="Search ..." class="nav-search" oninput="applyRequestFilters(this.value)">
+        <img src="../images/filter.svg" class="filter-icon" alt="Filter" onclick="toggleRequestFilterPanel()">
+    </div>
+</nav>
 
-</body>
-</html>
+<div id="shelter-filter-panel" class="filter-panel hidden">
+    <h3>Filter Requests</h3>
+    <div class="request-type-filter">
+        <label><input type="checkbox" name="request-type" value="looking"> Looking to Adopt</label>
+        <label><input type="checkbox" name="request-type" value="found"> Animal Found</label>
+    </div>
+
+    <div class="filter-buttons">
+        <button class="apply-filters-btn" onclick="applyRequestFilters()">Apply Filters</button>
+    </div>
+</div>
+
+
+
+
+<section class="all-requests">
+    <h2>Open Volunteer Requests</h2>
+    <div id="request-results" class="request-list">
+        <!-- Request cards will be injected here -->
+    </div>
+</section>

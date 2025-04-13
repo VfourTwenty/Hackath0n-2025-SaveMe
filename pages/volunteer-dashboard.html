@@ -15,6 +15,42 @@
     <div class="dashboard-sections">
         <h3>Your Favorite Animals</h3>
         <div id="favorite-animals" class="announcement-list"></div>
+
+        <h3>Your Requests</h3>
+        <div id="volunteer-requests" class="announcement-list"></div>
+
+        <button class="show-form-button" onclick="toggleRequestForm()">Create New Request</button>
+
+        <section class="request-form hidden" id="request-form-section">
+            <h2>Submit a Request</h2>
+            <form id="request-form">
+                <select id="request-type" required>
+                    <option value="" disabled selected>Select Request Type</option>
+                    <option value="looking">I'm looking to adopt</option>
+                    <option value="found">I've found an animal</option>
+                </select>
+
+                <textarea id="request-description" placeholder="Describe the request..." required></textarea>
+
+                <div class="photo-upload-wrapper">
+                    <label for="request-photo">Upload a Photo:</label>
+                    <input type="file" id="request-photo" accept="image/*" required>
+                </div>
+            </form>
+
+            <button class="request-submit-button" onclick="createRequest()">Submit Request</button>
+        </section>
+
+        <section class="request-form hidden" id="edit-request-form-section">
+            <h2>Edit Request</h2>
+            <form id="edit-request-form">
+                <textarea id="edit-request-description" placeholder="Describe the request..." required></textarea>
+            </form>
+
+            <button class="request-submit-button" onclick="updateRequest()">Save Changes</button>
+        </section>
+
+
     </div>
 
     <div class="logout-section">

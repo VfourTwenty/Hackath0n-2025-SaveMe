@@ -229,6 +229,7 @@ function populateVolunteerDashboard() {
     }
 
     renderVolunteerFavorites();
+    renderVolunteerRequests();
 }
 
 
@@ -350,10 +351,11 @@ function isUserLoggedIn() {
 }
 
 function handleViewRequests() {
-    const isLoggedIn = getCurrentUser(); // or any login check
-    if (!isLoggedIn) {
+    const user = getCurrentUser();
+
+    if (!user) {
         loadPage("pages/select-role.html");
-    } else {
+    } else if (user.role === "volunteer") {
         loadPage(
             "all-announcements.html",
             false,
@@ -361,6 +363,8 @@ function handleViewRequests() {
             setupHealthFilterCheckboxes,
             renderAllAnnouncements
         );
-
+    } else if (user.role === "shelter") {
+        loadPage("all-requests.html", false, renderAllRequests);
     }
 }
+

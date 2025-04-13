@@ -135,3 +135,56 @@ function clearFilters() {
     // 🔄 Render all announcements again
     renderAllAnnouncements();
 }
+
+function applyRequestFilters(query = null) {
+    const allRequests = JSON.parse(localStorage.getItem("requests") || "{}");
+    const ids = Object.keys(allRequests);
+
+    // 🔍 Use passed query or fallback to value from input (for manual trigger)
+    const searchQuery = (query ?? document.getElementById("request-search")?.value)?.toLowerCase() || "";
+
+    // 🟣 Get all checked request type checkboxes
+    const selectedTypes = [...document.querySelectorAll('input[name="request-type"]:checked')]
+        .map(cb => cb.value);
+
+    const filtered = ids.filter(id => {
+        const r = allRequests[id];
+        if (!r) return false;
+
+        const matchesType = selectedTypes.length === 0 || selectedTypes.includes(r.type);
+        const matchesSearch = searchQuery === "" ||
+            r.description?.toLowerCase().includes(searchQuery) ||
+            r.location?.toLowerCase().includes(searchQuery);
+
+        return matchesType && matchesSearch;
+    });
+
+    sessionStorage.setItem("filteredRequestIds", JSON.stringify(filtered));
+    renderAllRequests(filtered);
+}
+
+
+function toggleRequestFilterPanel() {
+    const panel = document.getElementById("shelter-filter-panel");
+    const isHidden = panel.classList.contains("hidden");
+
+    if (isHidden) {
+        panel.classList.remove("hidden");
+        setTimeout(() => document.addEventListener("click", outsideRequestClickListener), 0);
+    } else {
+        panel.classList.add("hidden");
+        document.removeEventListener("click", outsideRequestClickListener);
+    }
+}
+
+function outsideRequestClickListener(event) {
+    const panel = document.getElementById("shelter-filter-panel");
+    const icon = document.querySelector(".filter-icon");
+
+    if (!panel.contains(event.target) && !icon.contains(event.target)) {
+        panel.classList.add("hidden");
+        document.removeEventListener("click", outsideRequestClickListener);
+    }
+}
+
+
